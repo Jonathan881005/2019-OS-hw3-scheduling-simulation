@@ -81,14 +81,14 @@ void context_test(task_type id)
     ucontext_t child,m;
 
     getcontext(&child);
-    child.uc_stack.ss_sp = stack;//指定栈空间
-    child.uc_stack.ss_size = sizeof(stack);//指定栈空间大小
+    child.uc_stack.ss_sp = stack;//指定stack空間
+    child.uc_stack.ss_size = sizeof(stack);//指定stack空間大小
     child.uc_stack.ss_flags = 0;
-    child.uc_link = &m;//设置后继上下文
+    child.uc_link = &m;//設定後繼context
 
-    makecontext(&child, task_const[id].entry,0);//修改上下文指向func1函数
+    makecontext(&child, task_const[id].entry,0);//修改context指向func1函式
 
-    swapcontext(&m,&child);//切换到child上下文，保存当前上下文到main
+    swapcontext(&m,&child);//切換到child，保存當前context到main
 }
 
 
